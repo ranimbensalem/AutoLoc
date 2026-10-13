@@ -5,12 +5,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "agence")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Agence {
 
     @Id
@@ -28,4 +31,9 @@ public class Agence {
 
     @Column(nullable = false, length = 20)
     private String telephone;
+    @OneToMany(mappedBy = "agence")
+    private Set<Employe> employes;
+
+    @OneToMany(mappedBy = "agence")
+    private Set<Vehicule> vehicules;
 }

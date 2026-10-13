@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -30,7 +31,14 @@ public class Vehicule {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private StatutVehicule statut;
-
+    @OneToMany(mappedBy = "vehicule")
+    private Set<Maintenance> maintenances;
+    @OneToMany(mappedBy = "vehicule")
+    private Set<Reservation> reservations ;
+    @ManyToMany
+    private Set<Equipement> equipements;
+    @ManyToOne
+    private Agence agence;
 
 
 }
